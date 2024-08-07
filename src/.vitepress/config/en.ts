@@ -12,7 +12,7 @@ export const en = defineConfig({
     },
 
     editLink: {
-      pattern: 'https://github.com/Hi-Motor/Hi-Motor-Designer/edit/main/docs/:path',
+      pattern: 'https://github.com/Hi-Motor/Hi-Motor-Designer/edit/main/src/:path',
       text: 'Edit this page on GitHub'
     },
 

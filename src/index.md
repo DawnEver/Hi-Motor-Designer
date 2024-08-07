@@ -8,10 +8,10 @@ hero:
   actions:
     - theme: brand
       text: 下载
-      link: /download
+      link: /zh/download
     - theme: alt
       text: 指南
-      link: /guide/what-is-hmd
+      link: /zh/guide/what-is-hmd
 
 features:
   - title: Feature A
