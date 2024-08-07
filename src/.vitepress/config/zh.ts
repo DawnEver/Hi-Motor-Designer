@@ -3,15 +3,12 @@ import { defineConfig, type DefaultTheme } from 'vitepress'
 
 export const zh = defineConfig({
   lang: 'zh-Hans',
-  description: "高效电机设计工业软件中国领导者",
+  description: "全球领先的高效电机设计工业软件",
 
   themeConfig: {
     nav: nav(),
 
-    sidebar: {
-      '/zh/guide/': { base: '/zh/guide/', items: sidebarGuide() },
-      '/zh/examples/': { base: '/zh/examples/', items: sidebarExamples() }
-    },
+    sidebar: sidebarGuide(),
 
     editLink: {
       pattern: 'https://github.com/Hi-Motor/Hi-Motor-Designer/edit/main/src/:path',
@@ -19,7 +16,7 @@ export const zh = defineConfig({
     },
 
     footer: {
-      message: '',
+      message: '联系我们: mingyangbao@hust.edu.cn',
       copyright: `版权所有 © 2023-${new Date().getFullYear()} Hi-Motor`
     },
 
@@ -53,20 +50,29 @@ function nav(): DefaultTheme.NavItem[] {
   return [
     {
       text: '指南',
-      link: '/zh/guide/what-is-hmd',
-      activeMatch: '/zh/guide/'
+      link: '/getting-start/what-is-hmd',
+      activeMatch: '/getting-start'
     },
     {
-      text: '案例',
-      link: '/zh/examples/examples',
-      activeMatch: '/zh/examples/'
+      text: '下载',
+      link: '/download',
+      activeMatch: '/download'
     },
     {
+      text: '链接',
       items: [
         {
-          text: '更新日志',
-          link: '/'
+          text: 'Hi-Motor',
+          link: 'https://hi-motor.site'
         },
+        {
+          text: 'Hi-Motor Hub',
+          link: 'https://hub.hi-motor.site'
+        },
+        // {
+        //   text: '武汉伏特沃克科技有限公司',
+        //   link: 'https://voltworks.cn'
+        // },
       ]
     }
   ]
@@ -75,25 +81,30 @@ function nav(): DefaultTheme.NavItem[] {
 function sidebarGuide(): DefaultTheme.SidebarItem[] {
   return [
     {
-      text: '快速开始',
-      collapsed: false,
+      text: '入门',
       items: [
-        { text: '什么是 Hi-Motor Designer', link: 'what-is-hmd' },
-        { text: '快速开始', link: 'getting-started' },
+        { text: '什么是 Hi-Motor Designer', link: '/getting-start/what-is-hmd' },
+        { text: '快速开始', link: '/getting-start/quickstart' },
+        { text: '用户界面', link: '/getting-start/gui' },
       ]
     },
-  ]
-}
-
-function sidebarExamples(): DefaultTheme.SidebarItem[] {
-  return [
     {
-      text: '案例',
+      text: '功能',
       items: [
-        { text: '案例', link: 'examples' },
-        
+        { text: '结构建模', link: '/features/modeling' },
+        { text: '绕组分析', link: '/features/windings' },
+        { text: '仿真计算', link: '/features/simulation' },
+        { text: '算法优化', link: '/features/optimization' },
+        { text: '偏好设置', link: '/features/settings' },
       ]
-    }
+    },
+    {
+      text: '示例',
+      items: [
+        { text: '一台 2.2 kw 流线型磁障同步磁阻电机', link: '/examples/01' },
+      ]
+    },
+    { text: '常见问题', link: '/q&a' },
   ]
 }
 

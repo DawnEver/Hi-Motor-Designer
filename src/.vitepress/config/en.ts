@@ -6,10 +6,7 @@ export const en = defineConfig({
 
   themeConfig: {
     nav: nav(),
-    sidebar: {
-      '/en/guide/': { base: '/en/guide/', items: sidebarGuide() },
-      '/en/examples/': { base: '/en/examples/', items: sidebarExamples() }
-    },
+    sidebar: sidebarGuide(),
 
     editLink: {
       pattern: 'https://github.com/Hi-Motor/Hi-Motor-Designer/edit/main/src/:path',
@@ -17,8 +14,8 @@ export const en = defineConfig({
     },
 
     footer: {
-      message: '',
-      copyright: 'Copyright © 2019-present Hi-Motor'
+      message: 'Contact us: mingyangbao@hust.edu.cn',
+      copyright: 'Copyright © 2023-present Hi-Motor'
     }
   }
 })
@@ -26,21 +23,30 @@ export const en = defineConfig({
 function nav(): DefaultTheme.NavItem[] {
   return [
     {
+      text: 'Download',
+      link: '/en/download',
+      activeMatch: '/en/download'
+    },
+    {
       text: 'Guide',
-      link: '/en/guide/what-is-hmd',
-      activeMatch: '/en/guide/'
+      link: '/en/getting-start/what-is-hmd',
+      activeMatch: '/en/getting-start/'
     },
     {
-      text: 'Examples',
-      link: '/en/examples/examples',
-      activeMatch: '/en/examples/'
-    },
-    {
+      text: 'Links',
       items: [
         {
-          text: 'Changelog',
-          link: '/'
+          text: 'Hi-Motor',
+          link: 'https://hi-motor.site'
         },
+        {
+          text: 'Hi-Motor Hub',
+          link: 'https://hub.hi-motor.site'
+        },
+        // {
+        //   text: 'Wuhan Voltworks S&T Ltd.',
+        //   link: 'https://voltworks.cn'
+        // },
       ]
     }
   ]
@@ -48,25 +54,12 @@ function nav(): DefaultTheme.NavItem[] {
 
 function sidebarGuide(): DefaultTheme.SidebarItem[] {
   return [
+    
     {
       text: 'Introduction',
-      collapsed: false,
       items: [
         { text: 'What is Hi-Motor Designer?', link: 'what-is-hmd' },
-        { text: 'Getting Started', link: 'getting-started' },
       ]
     },
-  ]
-}
-
-function sidebarExamples(): DefaultTheme.SidebarItem[] {
-  return [
-    {
-      text: 'Examples',
-      items: [
-        { text: 'Examples', link: 'examples' },
-
-      ]
-    }
   ]
 }
