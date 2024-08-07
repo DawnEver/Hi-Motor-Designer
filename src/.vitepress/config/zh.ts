@@ -49,14 +49,14 @@ export const zh = defineConfig({
 function nav(): DefaultTheme.NavItem[] {
   return [
     {
-      text: '用户文档',
-      link: '/getting-start/what-is-hmd',
-      activeMatch: '/getting-start'
-    },
-    {
       text: '下载',
       link: '/download',
       activeMatch: '/download'
+    },
+    {
+      text: '用户文档',
+      link: '/getting-start/what-is-hmd',
+      activeMatch: '/getting-start'
     },
     {
       text: '链接',
