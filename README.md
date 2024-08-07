@@ -1,2 +1,2 @@
-# Hi-Motor Designer Docs
-Hi-Motor Designer HomePage
+# Hi-Motor Designer
+Hi-Motor designer homePage & docs

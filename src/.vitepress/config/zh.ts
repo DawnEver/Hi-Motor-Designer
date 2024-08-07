@@ -14,7 +14,7 @@ export const zh = defineConfig({
     },
 
     editLink: {
-      pattern: 'https://github.com/Hi-Motor/Hi-Motor/edit/main/docs/:path',
+      pattern: 'https://github.com/Hi-Motor/Hi-Motor-Designer/edit/main/docs/:path',
       text: '在 GitHub 上编辑此页面'
     },
 
