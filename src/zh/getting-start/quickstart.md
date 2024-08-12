@@ -63,7 +63,7 @@
 2. 进入 `src/local` 目录下，使用`记事本`或其他文本编辑工具打开 sequence.key 序列号文件（`src/local/sequence.key`），在引号中填入序列号。<br>
 注意，序列号需要联网激活（仅首次激活需要联网）。<br>
 序列号在激活后将绑定计算机相关用户信息，一条序列号仅可以用于一台计算机使用。<br>
-<!-- 可通过访问 [license.hi-motor.site](https://license.hi-motor.site) 查询序列号激活信息。<br> -->
+可通过访问 [license.hi-motor.site](https://license.hi-motor.site/query) 查询序列号激活信息。<br>
 <table><tr>
 <td><img src="./quickstart/init-2.jpg" /></td>
 <td><img src="./quickstart/init-3.jpg" /></td>
