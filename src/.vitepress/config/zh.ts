@@ -85,7 +85,6 @@ function sidebarGuide(): DefaultTheme.SidebarItem[] {
       items: [
         { text: '什么是 Hi-Motor Designer', link: '/getting-start/what-is-hmd' },
         { text: '快速开始', link: '/getting-start/quickstart' },
-        { text: '用户界面', link: '/getting-start/gui' },
       ]
     },
     {
