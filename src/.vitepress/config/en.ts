@@ -9,7 +9,7 @@ export const en = defineConfig({
     sidebar: sidebarGuide(),
 
     editLink: {
-      pattern: 'https://github.com/Hi-Motor/Hi-Motor-Designer/edit/main/src/:path',
+      pattern: 'https://github.com/DawnEver/Hi-Motor-Designer/edit/main/src/:path',
       text: 'Edit this page on GitHub'
     },
 

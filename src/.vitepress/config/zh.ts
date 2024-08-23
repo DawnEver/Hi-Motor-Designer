@@ -11,7 +11,7 @@ export const zh = defineConfig({
     sidebar: sidebarGuide(),
 
     editLink: {
-      pattern: 'https://github.com/Hi-Motor/Hi-Motor-Designer/edit/main/src/:path',
+      pattern: 'https://github.com/DawnEver/Hi-Motor-Designer/edit/main/src/:path',
       text: '在 GitHub 上编辑此页面'
     },
 

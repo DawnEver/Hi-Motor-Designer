@@ -22,7 +22,7 @@ export const shared = defineConfig({
     },
     /* prettier-ignore */
     head: [
-        ['link', { rel: 'icon', type: 'image/svg+xml', href: 'https://cdn.jsdelivr.net/gh/Hi-Motor/Designs@main/logo-latest/favicon.ico' }],
+        ['link', { rel: 'icon', type: 'image/svg+xml', href: 'https://cdn.jsdelivr.net/gh/Hi-Motor/Images@main/logo-latest/favicon.ico' }],
     ],
     locales: {
       zh: {
