@@ -47,7 +47,7 @@ export const shared = defineConfig({
       },
   
       socialLinks: [
-        { icon: 'github', link: 'https://github.com/Hi-Motor/Hi-Motor-Designer' },
+        { icon: 'github', link: 'https://github.com/DawnEver/Hi-Motor-Designer' },
         { icon: 
           {
             // bilibili
