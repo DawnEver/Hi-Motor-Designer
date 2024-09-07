@@ -91,6 +91,8 @@ function sidebarGuide(): DefaultTheme.SidebarItem[] {
       text: '功能',
       items: [
         { text: '结构建模', link: '/features/modeling' },
+        { text: '定子槽型', link: '/features/stator_slot' },
+        { text: '转子拓扑', link: '/features/rotor_topology' },
         { text: '绕组分析', link: '/features/windings' },
         { text: '仿真计算', link: '/features/simulation' },
         { text: '算法优化', link: '/features/optimization' },
