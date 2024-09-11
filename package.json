@@ -7,5 +7,8 @@
     "src:dev": "vitepress dev src",
     "src:build": "vitepress build src",
     "src:preview": "vitepress preview src"
+  },
+  "dependencies": {
+    "markdown-it-mathjax3": "^4.3.2"
   }
 }
