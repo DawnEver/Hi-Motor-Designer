@@ -5,3 +5,7 @@ Hi-Motor designer homePage & docs
 ```
 yarn vitepress dev src
 ```
+
+# ToDo
+- Auto numbering of equations.
+    - [MathJax 自动公式编号](https://www.osgeo.cn/mathjax/input/tex/eqnumbers.html)

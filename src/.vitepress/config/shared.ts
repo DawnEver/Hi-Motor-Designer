@@ -1,4 +1,5 @@
 import { defineConfig } from 'vitepress'
+import mathjax3 from 'markdown-it-mathjax3';
 
 export const shared = defineConfig({
     title: "Hi-Motor Designer",
@@ -10,7 +11,9 @@ export const shared = defineConfig({
     metaChunk: true,
 
     markdown: {
-        // math: true,
+        config: (md) => {
+          md.use(mathjax3)
+        },      
         codeTransformers: [
         // We use `[!!code` in demo to prevent transformation, here we revert it back.
         {
