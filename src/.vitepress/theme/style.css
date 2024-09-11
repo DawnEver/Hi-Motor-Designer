@@ -140,14 +140,6 @@
 /**
  * Component: Page
  * -------------------------------------------------------------------------- */
-.center 
-{
-  width: auto;
-  display: table;
-  margin-left: auto;
-  margin-right: auto;
-}
-
 /* mathjax3 block */
 mjx-container {
   display: inline-block;
@@ -159,4 +151,3 @@ mjx-container > svg {
   margin: auto;
   display: inline-block;
 }
-
