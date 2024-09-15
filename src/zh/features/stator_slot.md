@@ -3,7 +3,7 @@
 ## 1. 定子平行槽
 
 <div align=center>
-<img src="./stator_slot/pingxingcao.jpg" width=50%>
+<img src="./stator_slot/pingxingcao.jpg" width=100%>
 
 定子平行槽参数化模型示意图
 
@@ -80,7 +80,7 @@ $P_{8}$ 与 $P_{7}$ 关于 x 轴对称，相应地得到 $P_{8}$ 点的位置。
 ## 2. 定子平行齿
 
 <div align=center>
-<img src="./stator_slot/pingxingchi.jpg" width=50%>
+<img src="./stator_slot/pingxingchi.jpg" width=100%>
 
 定子平行齿参数化模型示意图
 
@@ -173,7 +173,7 @@ $P_{7}P_{11}、P_{11}P_{8}$ 为线段连接。至此完成单个槽的平行齿�
 ## 3. 定子锥形槽
 
 <div align=center>
-<img src="./stator_slot/zhuixingcao.jpg" width=50%>
+<img src="./stator_slot/zhuixingcao.jpg" width=100%>
 
 定子锥形槽参数化模型示意图
 
