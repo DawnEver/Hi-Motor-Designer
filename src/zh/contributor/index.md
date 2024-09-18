@@ -1,0 +1,34 @@
+# 致开发者
+## 项目文件结构
+- ./.vscode # vscode开发配置
+- ./build # python package 输出路径
+- ./dist # 打包 exe 文件储存路径
+- ./docs # 文档
+- ./examples # 命令行使用案例
+- ./hi_motor_designer # 包文件
+    - ./core # 核心模块
+        - ./case
+        - ./lab
+        - ./models
+        - ./optimization
+        - ./simulation
+        - ./utils
+    - ./ui # GUI 模块
+    - ./utils # 通用工具模块
+        - ./logger.py # 日志
+        - ./io.py # 文件io
+    - ./toolbox # 一些进阶使用的工具箱
+- ./hmd_femm # 开发的python femm接口
+- ./scripts # 开发用脚本
+- ./tests # 测试脚本
+- ./usr # 用户资源目录
+    - ./default # 默认文件
+    - ./lib # 一些重要文件
+        - ./femm # 每次 femm 仿真的临时文件
+        - ./dxf # 参考模型 dxf 文件
+        - ./motor # 电机参数文件
+    - ./local # 用户本地文件
+    - ./style # 一些 ui 风格
+- ./output # 保存输出文件
+    - ./logs # 自动保存的日志、数据、fem文件
+    - ./reports # 仿真报告

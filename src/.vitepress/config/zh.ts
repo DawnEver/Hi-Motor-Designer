@@ -106,6 +106,14 @@ function sidebarGuide(): DefaultTheme.SidebarItem[] {
       ]
     },
     { text: '常见问题', link: '/q&a' },
+    {
+      text: '致开发者',
+      items: [
+        { text: '序', link: '/contributor/index' },
+        { text: '从零建模电机', link: '/contributor/model_a_motor' },
+        { text: '概念：Case', link: '/contributor/concept_case' },
+      ]
+    },
   ]
 }
 
