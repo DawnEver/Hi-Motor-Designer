@@ -2,6 +2,7 @@
 ## 1. 永磁电机U型转子
 <div align=center>
 <img src="./rotor_topology/U型转子.jpg" width=50%>
+
 内置式 U 型转子参数化模型示意图
 
 内置式U型转子变量名称对应表
@@ -357,6 +358,7 @@ $P_{1} P_{2}$、$P_{2} P_{4}$、$P_{4} A_{3}$、$P_{3} P_{1}$ 为线段连接，
 ## 2. 永磁电机V型转子
 <div align=center>
 <img src="./rotor_topology/V型转子.jpg" width=50%>
+
 内置式 V 型转子参数化模型示意图
 
 内置式V型转子变量名称对应表
@@ -567,10 +569,452 @@ t_{PM}$。将 $P_3 P_4$ 点逆时针旋转永磁体极弧的机械角度 $θ_P$�
 
 
 ## 4. 电励磁电机转子凸极式
+<div align=center>
+<img src=".\rotor_topology\凸极式电励磁电机转子.jpg" width=50%>
+
+凸极式电励磁电机转子参数化模型示意图  
+
+凸极式电励磁电机转子变量名称对应表
+
+| 参数名称 | 变量名称 | 图中标示 |
+| :---: | :---: | :---: |
+| 转子齿宽度 | PoleWidth | pw |
+| 转子齿深度 | PoleDepth | pd |
+| 转子齿靴宽度 | PoleTipWidth | ptr |
+| 转子齿靴深度 | PoleTipDepth | ptd |
+| 转子齿靴圆角半径 | PoleTipRadius | ptr |
+| 圆弧圆心与原点的距离 | PoleSurfaceOffset | pso |
+| 极尖半径 | PoleSurfaceRadius | psr |
+| 励磁绕组宽度 | CoilWidth | rcw |
+| 励磁绕组深度 | CoilDepth | rcd |
+| 励磁绕组侧边绝缘层厚度 | LinerPoleSide | lps |
+| 励磁绕组顶部绝缘层厚度 | LinerPoleTip | lpt |
+| 励磁绕组基座绝缘层厚度 | LinerCoilBase | lcb |
+
+</div>
+
+对于凸极式电励磁电机转子，首先令转子 $d$ 轴位于 $y$ 轴，坐标原点位于电机几何中心 $O$，建立笛卡尔坐标系。令 $x$ 轴为极坐标的角度坐标为 $0^\circ$ 的位置，建立相应的极坐标系。凸极式电励磁电机转子参数化模型示意图如图所示，以下计算涉及到的点线均为转子 $d$ 轴与 $x$ 轴之间的半极模型上的点。
+
+根据圆弧圆心与原点的距离 $pso$（为叙述方便，正文中、图中的变量名称与代码的变量命名不统一，而是在表中将其一一对应）及极尖半径 $psr$ 确定位于 $y$ 轴上的 $A_{5}$ 点，根据齿宽度 $pw$ 及转子齿靴深度 $ptw$ 得到 $A_{1}$ 点的横坐标 $x_{A1}$，且 $A_{1}$ 点位于以 $O2$ 为圆心、以 $psr$ 为半径的圆上，因此，$A_{1}$ 点的纵坐标：
+$$
+\
+y_{A1} = \sqrt{psr^2 - x_{A1}^2} + pso
+\tag{4-1}
+$$
+
+
+将 $A_{1}$ 点沿 $y$ 轴负方向平移得到 $A_{2}$ 点：
+$$
+\
+\begin{cases}
+x_{A2} = x_{A1} \\
+y_{A2} = y_{A5} - ptd
+\end{cases}
+\tag{4-2}
+$$
+
+将 $A_{2}$ 点沿 $x$ 轴负方向平移转子齿靴宽度 $ptw$ 的距离得到 $A_{3}$ 点：
+$$
+\
+\begin{cases}
+x_{A3} = x_{A2} - ptw \\
+y_{A3} = y_{A2}
+\end{cases}
+\tag{4-3}
+$$
+
+
+将 $A_{3}$ 点沿 $y$ 轴负方向平移转子齿深度 $pd$ 的距离得到 $A_{4}$ 点：
+$$
+\
+\begin{cases}
+x_{A4} = x_{A3} \\
+y_{A4} = y_{A3} - pd
+\end{cases}
+\tag{4-4}
+$$
+
+
+在极坐标下，$A_{6}$ 点与 $A_{4}$ 点具有相同的半径坐标，因其位于 $q$ 轴上，角度坐标可以根据转子槽数 $rs$ 求得：
+$$
+\left\{
+\begin{array}{l}
+r_{A6} = \sqrt{x_{A4}^2 + y_{A4}^2} \\
+\alpha_{A6} = \frac{\pi}{2} - \frac{\pi}{rs}
+\end{array}
+\right.
+\tag{4-5}
+$$
+
+
+为了方便对气隙和转子分别进行剖分，需将转子模型与气隙隔离开来，即将转子封闭。转子模型的边界 $A_{7}$ 点为圆弧 $A_{1}A_{5}$ 与直线 $OA_{6}$ 相交得到，联立方程：
+$$
+\
+\left\{
+\begin{array}{l}
+y = x \cdot \tan\alpha_{A6} \\
+\left(x - x_{O2}\right)^2 + \left(y - y_{O2}\right)^2 = psr^2
+\end{array}
+\right.
+\tag{4-6}
+$$
+ 
+得到：
+$$
+\
+\left\{
+\begin{aligned}
+x_{A7} &= \frac{-b_{\text{temp}} + \sqrt{b_{\text{temp}}^2 - 4 \cdot a_{\text{temp}} \cdot c_{\text{temp}}}}{2 \cdot a_{\text{temp}}} \\
+y_{A7} &= x_{A7} \cdot \tan\alpha_{A6}
+\end{aligned}
+\right.
+\tag{4-7}
+$$
+
+其中，$a_{temp}$、$b_{temp}$、$c_{temp}$ 为联立后整理的二次方程的二次项、一次项、常数项系数：
+$$
+\
+\left\{
+\begin{aligned}
+a_{\text{temp}} &= 1 + \left(\tan\alpha_{A6}\right)^2 \\
+b_{\text{temp}} &= -2x_{O2} - 2y_{O2} \cdot \tan\alpha_{A6} \\
+c_{\text{temp}} &= x_{O2}^2 + y_{O2}^2 - psr^2
+\end{aligned}
+\right.
+\tag{4-8}
+$$
+
+$A_{1}A_{2}$、$A_{2}A_{3}$、$A_{3}A_{4}$、$A_{6}A_{7}$ 为线段连接，$A_{1}A_{5}$、$A_{1}A_{7}$ 为圆弧连接，圆心为 $O_{2}$ 点，圆心角分别为：
+$$
+\
+\alpha_{\widehat{A_{1}A_{5}}} = \arctan\left(\frac{x_{A1}}{y_{A1} - pso}\right) \quad 
+\tag{4-9}
+$$
+
+$$
+\
+\alpha_{\widehat{A_{1}A_{7}}} = \arctan\left(\frac{x_{A5}}{y_{A5} - pso}\right) - \arctan\left(\frac{x_{A1}}{y_{A1} - pso}\right) \quad
+\tag{4-10}
+$$
+
+$A_{4}A_{6}$ 为圆弧连接，圆心为 $O$ 点，圆心角为：
+$$
+\
+\alpha_{\widehat{A_{4}A_{6}}} = \arctan\left(\frac{y_{A4}}{x_{A4}}\right) - \alpha_{A6}
+\tag{4-11}
+$$
+
+转子槽绝缘对电磁性能没有影响，在建模时默认励磁绕组侧边绝缘层厚度 $lsp$、顶部绝缘层厚度 $lpt$ 及基座绝缘层厚度 $lcb$ 均为 0，使励磁绕组紧贴转子凸极。此时，$B_{1}$ 点与 $A_{3}$ 点重合，将 $B_{1}$ 点沿 $x$ 轴正方向平移励磁绕组宽度 $rcw$ 的距离，得到 $B_{2}$ 点：
+$$
+\
+\begin{cases}
+x_{B2} = x_{B1} + rcw \\
+y_{B2} = y_{B1}
+\end{cases}
+\tag{4-12}
+$$
+
+将 $B_{2}$ 点沿 $y$ 轴负方向平移励磁绕组深度 $rcd$ 的距离，得到 $B_{3}$ 点：
+$$
+\
+\begin{cases}
+x_{B3} = x_{B2} \\
+y_{B3} = y_{B2} - rcd
+\end{cases}
+\tag{4-13}
+$$
+
+将 $B_{1}$ 点沿 $y$ 轴负方向平移励磁绕组深度 $rcd$ 的距离，得到 $B_{4}$ 点：
+$$
+\
+\begin{cases}
+x_{B4} = x_{B1} \\
+y_{B4} = y_{B1} - rcd
+\end{cases}
+\tag{4-14}
+$$
+
+$B_{1}B_{2}$、$B_{2}B_{3}$、$B_{3}B_{4}$、$B_{1}B_{4}$ 为线段连接，得到励磁绕组。另外，可以在 $A_{3}$ 点处添加半径为 $ptr$ 的倒角，并对新建的倒角添加群组。对各个封闭区域添加相应材料，得到半极模型。以转子 $d$ 轴为对称轴，镜像出另一半极，并对侧边界添加反周期边界条件，至此完成单极的凸极式电励磁电机转子参数化建模。
+
+创建一对极模型时，除励磁绕组标签外均可利用镜像功能得到另一极，对于励磁绕组，需将左右两边调换顺序，以保证产生相反极性的磁场。对侧边界添加周期边界条件，得到凸极式电励磁电机转子一对极模型。全模型无需画出侧边界，只需将一对极的转子凸极式励磁绕组按极对数进行镜像，画出转子内外径整圆，得到凸极式电励磁电机转子全模型。
 
 ## 5. 电励磁电机转子平行槽
+<div align=center>
+
+<img src=".\rotor_topology\平行槽电励磁转子.jpg" width=50%>
+
+平行槽电励磁电机转子参数化模型示意图
+
+平行槽电励磁电机转子变量名称对应表
+
+| 参数名称 | 变量名称 | 图中标示 |
+| --- | --- | --- |
+| 转子槽宽度 | PoleSlotWidth |  psw  |
+| 转子槽深度 | PoleSlotDepth |  psd  |
+| 转子齿肩部夹角 | PoleTipAngle |  pta  |
+| 转子齿靴径向厚度 | PoleTipRadialDepth |  ptrd  |
+| 转子槽间隙宽度 | FieldCoilDividerWidth |  dw  |
+| 极尖半径 | PoleSurfaceRadius |  psr  |
+</div>
+
+
+对于平行槽电励磁电机转子，首先令转子 $q$ 轴位于 $x$ 轴，坐标原点位于电机几何中心 $O$，建立笛卡尔坐标系。凸极式电励磁电机转子参数化模型示意图如图所示，以下计算涉及到的点线均为转子 $d$ 轴与 $x$ 轴之间的半极模型上的点。
+
+根据极尖半径 $p_{sr}$（为叙述方便，正文中、图中的变量名称与代码的变量命名不统一，而是在表中将其一一对应）与转子槽深度 $p_{sd}$ 确定在 $x$ 轴上的 $A_1$ 点坐标：
+$$
+\
+\left\{
+\begin{aligned}
+x_{A1} &= psr - psd \\
+y_{A1} &= 0
+\end{aligned}
+\right.
+\tag{5-1}
+$$
+
+将 $A_1$ 点沿 $y$ 轴正方向平移转子槽间隙宽度 $dw$ 一半的距离，得到 $A_2$ 点：
+$$
+\
+\left\{
+\begin{aligned}
+x_{A2} &= x_{A1} \\
+y_{A2} &= \frac{dw}{2}
+\end{aligned}
+\right.
+\tag{5-2}
+$$
+
+将 $A_1$ 点沿 $y$ 轴正方向平移转子槽宽度 $p_{sw}$ 一半的距离，得到 $A_3$ 点：
+$$
+\
+\left\{
+\begin{aligned}
+x_{A3} &= x_{A1} \\
+y_{A3} &= \frac{psw}{2}
+\end{aligned}
+\right.
+\tag{5-3}
+$$
+
+将 $A_1$、$A_2$、$A_3$ 点沿 $x$ 轴正方向平移得到 $A_4$、$A_5$、$A_6$ 点：
+$$
+\
+\left\{
+\begin{aligned}
+x_{A4} &= psr - ptrd \\
+y_{A4} &= 0
+\end{aligned}
+\right.
+\tag{5-4}
+$$
+
+$$
+\
+\left\{
+\begin{aligned}
+x_{A5} &= x_{A4} \\
+y_{A5} &= y_{A2}
+\end{aligned}
+\right.
+\tag{5-5}
+$$
+
+$$
+\
+\left\{
+\begin{aligned}
+x_{A6} &= x_{A4} \\
+y_{A6} &= y_{A3}
+\end{aligned}
+\right.
+\tag{5-6}
+$$
+
+
+$A_8$ 点位于转子极表面圆弧的中点，可根据极尖半径 $p_{sr}$ 及转子槽数 $r_s$ 确定：
+$$
+\
+\left\{
+\begin{aligned}
+x_{A8} &= psr \cdot \cos\left(\frac{\pi}{rs}\right) \\
+y_{A8} &= psr \cdot \sin\left(\frac{\pi}{rs}\right)
+\end{aligned}
+\right.
+\tag{5-7}
+$$
+
+
+过点 $A_6$ 向 $x$ 轴正半轴方向作倾斜角为 $-pta$ 的直线，与以 $O$ 点为圆心，以极尖半径 $p_{sr}$ 为半径的圆弧相交于 $A_7$ 点，联立方程：
+$$
+\
+\left\{
+\begin{aligned}
+y - y_{A6} &= (x - x_{A6}) \cdot \tan(pta) \\
+x^2 + y^2 &= psr^2.
+\end{aligned}
+\right.
+\tag{5-8}
+$$
+得到：
+$$
+\
+\left\{
+\begin{aligned}
+x_{A7} &= \frac{-b_{\text{temp}} + \sqrt{b_{\text{temp}}^2 - 4 \cdot a_{\text{temp}} \cdot c_{\text{temp}}}}{2 \cdot a_{\text{temp}}} \\
+y_{A7} &= x_{A7} \cdot \tan(pta)
+\end{aligned}
+\right.
+\tag{5-9}
+$$
+其中，$a_{\text{temp}}$、$b_{\text{temp}}$、$c_{\text{temp}}$ 为联立后整理的二次方程的二次项、一次项、常数项系数：
+$$
+\
+\left\{
+\begin{aligned}
+a_{\text{temp}} &= 1 + \tan^2pta \\
+b_{\text{temp}} &= -2 x_{A6} \cdot \tan^2pta - 2 y_{A6} \cdot \tan(pta) \\
+c_{\text{temp}} &= x_{A6}^2 \cdot \tan^2pta + 2 x_{A6} y_{A6} \cdot \tan pta+ y_{A6}^2 - psr^2
+\end{aligned}
+\right.
+\tag{5-10}
+$$
+
+$A_{7}A_{8}$ 为圆弧连接，圆心为 $O$ 点，圆心角为：
+$$
+\
+\alpha_{\widehat{A{7}A{8}}} = \frac{\pi}{r_s} - \arctan\left(\frac{y_{A7}}{x_{A7}}\right)
+\tag{5-11}
+$$
+
+$A_{1}A_{2}$、$A_{2}A_{3}$、$A_{3}A_{6}$、$A_{2}A_{5}$、$A_{4}A_{5}$、$A_{6}A_{7}$ 为线段连接。对各个封闭区域添加相应的材料，得到半极模型。以转子 $d$ 轴为对称轴，镜像出另一半极，并对侧边界添加反周期边界条件，至此完成单极的平行槽电励磁电机转子参数化建模。
+
+创建一对极模型时，除励磁绕组标签外均可利用镜像功能得到另一极，对于励磁绕组，需将左右两边调换顺序，以保证产生相反极性的磁场。对侧边界添加周期边界条件，得到平行槽电励磁电机转子一对极模型。全模型无需画出侧边界，只需将一对极的转子平行槽励磁绕组按极对数进行镜像，画出转子内外径整圆，得到平行槽电励磁电机转子全模型。
 
 ## 6. 电励磁电机转子平行齿
+<div align=center>
+
+<img src=".\rotor_topology\平行齿电励磁电机转子.jpg" width="50%">
+
+平行齿电励磁电机转子参数化模型示意图
+
+平行齿电励磁电机转子变量名称对应表
+
+| 参数名称 | 变量名称 | 图中标示 |
+| :---: | :---: | :---: |
+| 转子齿宽度 | PoleWidth | \(pw\) |
+| 转子齿深度 | PoleDepth | \(pd\) |
+| 转子齿靴夹角 | PoleSideAngle | \(psa\) |
+| 转子齿靴宽度 | PoleTipWidth | \(ptr\) |
+| 圆弧圆心与原点的距离 | PoleSurfaceOffset | \(pso\) |
+| 转子齿靴径向厚度 | PoleTipRadialDepth | \(ptrd\) |
+| 转子槽间隙宽度 | FieldCoilDividerWidth | \(dw\) |
+| 极尖半径 | PoleSurfaceRadius | \(psr\) |
+
+</div>
+
+对于平行齿电励磁电机转子，首先令转子 $d$ 轴位于 $y$ 轴，坐标原点位于电机几何中心 $O$，建立笛卡尔坐标系。令 $x$ 轴为极坐标的角度坐标为 $0^\circ$ 的位置，建立相应的极坐标系。凸极式电励磁电机转子参数化模型示意图如图所示，以下计算涉及到的点线均为转子 $d$ 轴与 $x$ 轴之间的半极模型上的点。
+
+根据圆弧圆心与原点的距离 $pso$（为叙述方便，正文中、图中的变量名称与代码的变量命名不统一，而是在表中将其一一对应）及极尖半径 $psr$ 确定位于 $y$ 轴上的 $A_1$ 点，根据齿宽度 $pw$ 及转子齿靴宽度 $ptr$ 得到 $A_2$ 点的横坐标 $x_{A2}$，且 $A_2$ 点位于以 $O_2$ 为圆心、以 $psr$ 为半径的圆上，因此，$A_2$ 点的纵坐标：
+$$
+y_{A2} = \sqrt{psr^2 - (x_{A2} - pso)^2}
+\tag{6-1}
+$$
+
+$A_3$ 点在以 $O_2$ 为圆心、以 $psr - ptrd$ 为半径的圆上，且横坐标与 $A_2$ 点一致，因此，$A_3$ 点的坐标：
+$$
+\begin{cases}
+x_{A3} = x_{A2} \\
+y_{A3} = \sqrt{(y_{A1} - ptrd)^2 - x_{A3} ^2}
+\end{cases}
+\tag{6-2}
+$$
+
+将 $A_3$ 点沿过 $A_3$ 点且倾斜角为转子齿靴夹角 $psa$ 的直线，向 $x$ 轴负半轴平移，与直线 $y = \frac{pw}{2}$ 相交于 $A_4$ 点：
+$$
+\
+\left\{
+\begin{aligned}
+x_{A4} &= \frac{pw}{2} \\
+y_{A4} &= y_{A3} - ptw \cdot \tan\left(\frac{psa \cdot \pi}{180}\right)
+\end{aligned}
+\right.
+\tag{6-3}
+$$
+
+将 $A_4$ 点沿 $y$ 轴负半轴平移得到 $A_5$ 点：
+$$
+\begin{cases}
+x_{A5} = x_{A4} \\
+y_{A5} = y_{A4} - pd
+\end{cases}
+\tag{6-4}
+$$
+
+过 $A_3$ 点作侧边界的垂线，垂足为 $A_7$ 点，侧边界的斜率由转子槽数 $rs$ 确定，线段 $A_3A_7$ 的距离：
+$$
+\
+\left|A_{3}A_{7}\right| = \frac{\left|x_{A{3}}\tan\left(\frac{\pi}{2} - \frac{\pi}{rs}\right) - y_{A{3}}\right|}{\sqrt{1 + \tan^2\left(\frac{\pi}{2} - \frac{\pi}{rs}\right)}}
+\tag{6-5}
+$$
+
+因此，$A_6$、$A_7$ 点由 $A_3$ 点沿过点 $A_3$ 垂直于侧边界的直线平移得到：
+$$
+\
+\left\{
+\begin{aligned}
+x_{A6} &= x_{A3} + \left(\left|A_{3}A_{7}\right| - \frac{dw}{2}\right) \cos\left(\frac{\pi}{rs}\right), \\
+y_{A6} &= y_{A3} - \left(\left|A_{3}A_{7}\right| - \frac{dw}{2}\right) \sin\left(\frac{\pi}{rs}\right),
+\end{aligned}
+\right.
+\tag{6-6}
+$$
+
+$$
+\
+\left\{
+\begin{aligned}
+x_{A7} &= x_{A3} + \left|A_{3}A_{7}\right| \cos\left(\frac{\pi}{rs}\right), \\
+y_{A7} &= y_{A3} - \left|A_{3}A_{7}\right| \sin\left(\frac{\pi}{rs}\right),
+\end{aligned}
+\right.
+\tag{6-7}
+$$
+
+过 $A_5$ 点作侧边界的垂线，垂足为 $A_9$ 点，线段 $A_5A_9$ 的距离：
+$$
+\
+\left|A_5A_9\right| = \frac{\left|x_{A5}\tan\left(\frac{\pi}{2} - \frac{\pi}{rs}\right) - y_{A_5}\right|}{\sqrt{1 + \tan^2\left(\frac{\pi}{2} - \frac{\pi}{rs}\right)}}
+\tag{6-8}
+$$
+
+因此，$A_8$、$A_9$ 点由 $A_5$ 点沿过点 $A_5$ 垂直于侧边界的直线平移得到：
+$$
+\
+\begin{cases}
+x_{A8} = x_{A5} + \left(\left|A_5A_9\right| - \frac{dw}{2}\right) \cos\left(\frac{\pi}{rs}\right), \\
+y_{A8} = y_{A5} - \left(\left|A_5A_9\right| - \frac{dw}{2}\right) \sin\left(\frac{\pi}{rs}\right),
+\end{cases}
+\tag{6-9}
+$$
+
+$$
+\
+\begin{cases}
+x_{A9} = x_{A5} + \left|A_5A_9\right| \cos\left(\frac{\pi}{rs}\right), \\
+y_{A9} = y_{A5} - \left|A_5A_9\right| \sin\left(\frac{\pi}{rs}\right),
+\end{cases}
+\tag{6-10}
+$$
+
+$A_1A_2$ 为圆弧连接，圆心为 $O_2$ 点，圆心角为：
+$$
+\alpha_{\widehat{A1A2}} = \arctan\left(\frac{x_{A2}}{y_{A2} - pso}\right)
+\tag{6-11}
+$$
+
+$A_2A_3$、$A_3A_6$、$A_6A_7$、$A_6A_8$、$A_3A_4$、$A_4A_5$、$A_5A_8$、$A_8A_9$ 为线段连接。对各个封闭区域添加相应的材料，得到半极模型。以转子 $d$ 轴为对称轴，镜像出另一半极，并对侧边界添加反周期边界条件，至此完成单极的平行齿电励磁电机转子参数化建模。
+
+创建一对极模型时，除励磁绕组标签外均可利用镜像功能得到另一极，对于励磁绕组，需将左右两边调换顺序，以保证产生相反极性的磁场。对侧边界添加周期边界条件，得到平行齿电励磁电机转子一对极模型。全模型无需画出侧边界，只需将一对极的转子平行齿励磁绕组按极对数进行镜像，画出转子内外径整圆，得到平行齿电励磁电机转子全模型。
 
 ## 同步磁阻电机
 
