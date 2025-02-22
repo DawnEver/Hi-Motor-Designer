@@ -1,8 +1,8 @@
 # Hi-Motor Designer Release
-本页面记录 Hi-motor Designer 发行版的版本更新。
+本仓库不包含 Hi-motor Designer 源代码，仅记录 Hi-motor Designer 发行版的版本更新及提供安装包。
 
 ## Releases
-### Aquarius v0.1.6
+### v0.1.6 Aquarius
 发布时间：2025年2月20日
 - 提供4种定子槽型、2种转子磁障的同步磁阻电机参数化建模、绕组分析、4种性能仿真功能（电流相位角/单步/转矩脉动/损耗仿真）。
 - 采用新的绕组绘制模块。
@@ -12,21 +12,21 @@
 ---
 
 
-### Aquarius v0.1.5
+### v0.1.5 Aquarius
 发布时间：2024年8月9日
 - 修复若干bug。
 ---
 
-### Aquarius v0.1.4
+### v0.1.4 Aquarius
 发布时间：2024年6月7日
 - 修复若干bug。
 ---
 
-### Aquarius v0.1.1
+### v0.1.1 Aquarius
 发布时间：2024年4月15日
 - 修复若干bug。
 ---
 
-### Aquarius v0.1.0
+### v0.1.0 Aquarius
 发布时间：2024年1月30日
 - 正式打包发布 Hi-motor Designer
