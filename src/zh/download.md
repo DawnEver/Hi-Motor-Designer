@@ -3,4 +3,5 @@ layout: doc
 sidebar: false
 ---
 # 下载
-敬请期待
+- [在 Github 下载 Hi-Motor Designer 安装包](
+https://github.com/DawnEver/Hi-Motor-Designer/releases/latest)
