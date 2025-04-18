@@ -16,7 +16,7 @@ export const zh = defineConfig({
     },
 
     footer: {
-      message: '联系我们: mingyangbao@hust.edu.cn',
+      message: '联系我们:  hi.motor.cn@gmail.com',
       copyright: `版权所有 © 2023-${new Date().getFullYear()} Hi-Motor`
     },
 

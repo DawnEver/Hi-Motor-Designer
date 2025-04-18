@@ -14,7 +14,7 @@ export const en = defineConfig({
     },
 
     footer: {
-      message: 'Contact us: mingyangbao@hust.edu.cn',
+      message: 'Contact us: hi.motor.cn@gmail.com',
       copyright: 'Copyright © 2023-present Hi-Motor'
     }
   }

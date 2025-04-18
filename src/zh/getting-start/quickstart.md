@@ -4,7 +4,7 @@
 ## 获取安装包
 目前有以下两种获取方式：
 1. 从[下载页面](/download)获取。
-2. 联系开发团队，Email:[mingyangbao@hust.edu.cn](mailto:mingyangbao@hust.edu.cn)
+2. 联系开发团队，Email:[ hi.motor.cn@gmail.com](mailto: hi.motor.cn@gmail.com)
 
 ## 安装 Hi-Motor Designer
 安装包命名方式 `HMD-<版本号>-Setup.exe`, 0.5.0 版本安装包如下图：
