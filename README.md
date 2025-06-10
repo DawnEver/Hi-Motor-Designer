@@ -1,5 +1,6 @@
 # Hi-Motor Designer Docs
 本仓库仅仅包含 Hi-Motor Designer 主页及帮助文档网站源码，不包含软件源码。
+Node 20.^
 
 # Usage
 ```

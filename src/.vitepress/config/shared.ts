@@ -25,7 +25,7 @@ export const shared = defineConfig({
     },
     /* prettier-ignore */
     head: [
-        ['link', { rel: 'icon', type: 'image/svg+xml', href: 'https://cdn.jsdelivr.net/gh/Hi-Motor/Images@main/logo-latest/favicon.ico' }],
+        ['link', { rel: 'icon', type: 'image/svg+xml', href: 'http://oss.hi-motor.site/web/logo/favicon.ico' }],
     ],
     locales: {
       zh: {
@@ -45,8 +45,8 @@ export const shared = defineConfig({
         provider: 'local'
       },
       logo: {
-        dark: 'https://cdn.jsdelivr.net/gh/Hi-Motor/Images@main/logo-latest/hi-motor_02_white.svg',
-        light: 'https://cdn.jsdelivr.net/gh/Hi-Motor/Images@main/logo-latest/hi-motor_02.svg',
+        dark: 'http://oss.hi-motor.site/web/logo/hi-motor_white.svg',
+        light: 'http://oss.hi-motor.site/web/logo/hi-motor.svg',
       },
   
       socialLinks: [
